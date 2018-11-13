@@ -181,6 +181,42 @@
   </div>
 </template>
 
+<script>
+  //размером фаербола
+  var fireballSize = 22;
+
+  //скоростью фаербола в зависимости от направления ветра в игре
+  //при left — true, то фаербол летит по ветру и возвращается 5, иначе 2
+  var getFireballSpeed = function(left) {
+    return (left) ? 5 : 2;
+  };
+
+  //скорость мага
+  var wizardSpeed = 3;
+
+  //ширина мага
+  var wizardWidth = 70;
+
+  //высота мага
+  var getWizardHeight = function() {
+    return wizardWidth * 1.337;
+  };
+
+  //положение мага по горизонтали (посередине игрового поля)
+  //width - ширина игровой области
+  var getWizardX = function(width) {
+    //положение мага = половина игровой области - половина мага:
+    return width / 2 - wizardWidth / 2;
+  };
+
+  //положение мага по вертикали (на высоте 2/3 игрового поля от земли)
+  //height - высота игровой области
+  var getWizardY = function(height) {
+    //положение мага = опускаем на 1/3 поля - высота мага
+    return height / 3 - getWizardHeight();
+  };
+</script>
+
 <script src="js/game.js"></script>
 
 </body>
