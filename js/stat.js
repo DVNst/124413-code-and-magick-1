@@ -11,8 +11,6 @@ var BAR_HEIGHT = 150;
 var BAR_SPACING = 50;
 
 var barHeight = BAR_HEIGHT;
-var barX;
-var barY;
 var textHeight = Math.round(FONT_HEIGHT * 1.25);
 
 var renderCloud = function (ctx, x, y, color) {
@@ -60,8 +58,8 @@ window.renderStatistics = function (ctx, players, times) {
   for (var i = 0; i < players.length; i++) {
 
     barHeight = (BAR_HEIGHT * times[i]) / maxTime;
-    barX = CLOUD_X + BAR_SPACING + (BAR_WIDTH + BAR_SPACING) * i;
-    barY = CLOUD_Y + CLOUD_HEIGHT - GAP - textHeight - barHeight;
+    var barX = CLOUD_X + BAR_SPACING + (BAR_WIDTH + BAR_SPACING) * i;
+    var barY = CLOUD_Y + CLOUD_HEIGHT - GAP - textHeight - barHeight;
 
     renderText(ctx, players[i], barX, barY + textHeight + barHeight, '#000');
     renderText(ctx, Math.round(times[i]), barX, barY - GAP, '#000');
