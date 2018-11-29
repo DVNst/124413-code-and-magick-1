@@ -15,9 +15,9 @@ var similarListElement = setup.querySelector('.setup-similar-list');
 var similarWizardTemplate = document.querySelector('#similar-wizard-template').content.querySelector('.setup-similar-item');
 
 var setupPlayer = document.querySelector('.setup-player');
-var coatColorInput = document.getElementsByName('coat-color');
-var eyesColorInput = document.getElementsByName('eyes-color');
-var fireballColorInput = document.getElementsByName('fireball-color');
+var coatColorInput = setupPlayer.querySelector('input[name = coat-color]');
+var eyesColorInput = setupPlayer.querySelector('input[name = eyes-color');
+var fireballColorInput = setupPlayer.querySelector('input[name = fireball-color');
 
 var setupWizard = setupPlayer.querySelector('.setup-wizard');
 var wizardCoat = setupWizard.querySelector('.wizard-coat');
@@ -109,25 +109,25 @@ setupClose.addEventListener('keydown', function (evt) {
   }
 });
 
-setupUserName.onfocus = function () {
+setupUserName.addEventListener('focus', function () {
   document.removeEventListener('keydown', onPopupEscPress);
-};
+});
 
-setupUserName.onblur = function () {
+setupUserName.addEventListener('blur', function () {
   document.addEventListener('keydown', onPopupEscPress);
-};
+});
 
 wizardCoat.addEventListener('click', function () {
-  coatColorInput[0].value = getRandomElement(WIZARD_COATS);
-  wizardCoat.style.fill = coatColorInput[0].value;
+  coatColorInput.value = getRandomElement(WIZARD_COATS);
+  wizardCoat.style.fill = coatColorInput.value;
 });
 
 wizardEyes.addEventListener('click', function () {
-  eyesColorInput[0].value = getRandomElement(WIZARD_EYES);
-  wizardEyes.style.fill = eyesColorInput[0].value;
+  eyesColorInput.value = getRandomElement(WIZARD_EYES);
+  wizardEyes.style.fill = eyesColorInput.value;
 });
 
 setupFireballWrap.addEventListener('click', function () {
-  fireballColorInput[0].value = getRandomElement(FIREBALL);
-  setupFireballWrap.style.background = fireballColorInput[0].value;
+  fireballColorInput.value = getRandomElement(FIREBALL);
+  setupFireballWrap.style.background = fireballColorInput.value;
 });
