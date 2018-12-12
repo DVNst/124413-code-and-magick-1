@@ -25,7 +25,6 @@ var wizardEyes = setupWizard.querySelector('.wizard-eyes');
 
 var setupFireballWrap = document.querySelector('.setup-fireball-wrap');
 
-
 var setupOpen = document.querySelector('.setup-open');
 var setupClose = setup.querySelector('.setup-close');
 var setupUserName = setup.querySelector('.setup-user-name');
