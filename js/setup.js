@@ -35,6 +35,16 @@
     return arr[Math.floor(Math.random() * arr.length)];
   };
 
+  var shuffleArray = function (arr) {
+    for (var i = arr.length - 1; i > 0; i--) {
+      var j = Math.floor(Math.random() * (i + 1));
+      var temp = arr[j];
+      arr[j] = arr[i];
+      arr[i] = temp;
+    }
+    return arr;
+  };
+
   var renderWizard = function (wizard) {
     var wizardElement = similarWizardTemplate.cloneNode(true);
 
@@ -74,7 +84,7 @@
 
   var wizards = generateWizards();
   renderWizards();
-*/
+  */
 
   var onPopupEscPress = function (evt) {
     if (evt.keyCode === ESC_KEYCODE) {
@@ -135,15 +145,13 @@
     setupFireballWrap.style.background = fireballColorInput.value;
   });
 
-  form.addEventListener('submit', function (evt) {
-    window.backend.save(new FormData(form), function () {
-      setup.classList.add('hidden');
-    });
-    evt.preventDefault();
-  });
+  var onSave = function () {
+    setup.classList.add('hidden');
+  };
 
-  var onSuccess = function (wizards) {
+  var onLoad = function (wizards) {
     var fragment = document.createDocumentFragment();
+    wizards = shuffleArray(wizards);
 
     for (var i = 0; i < WIZARD_QUANTITY; i++) {
       fragment.appendChild(renderWizard(wizards[i]));
@@ -165,5 +173,10 @@
     document.body.insertAdjacentElement('afterbegin', node);
   };
 
-  window.backend.load(onSuccess, onError);
+  window.backend.load(onLoad, onError);
+
+  form.addEventListener('submit', function (evt) {
+    window.backend.save(new FormData(form), onSave, onError);
+    evt.preventDefault();
+  });
 })();
