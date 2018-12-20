@@ -13,6 +13,7 @@
 
   var setup = document.querySelector('.setup');
   var form = setup.querySelector('.setup-wizard-form');
+
   var similarListElement = setup.querySelector('.setup-similar-list');
   var similarWizardTemplate = document.querySelector('#similar-wizard-template').content.querySelector('.setup-similar-item');
 
@@ -49,6 +50,7 @@
     var wizardElement = similarWizardTemplate.cloneNode(true);
 
     wizardElement.querySelector('.setup-similar-label').textContent = wizard.name;
+
     wizardElement.querySelector('.wizard-coat').style.fill = wizard.colorCoat;
     wizardElement.querySelector('.wizard-eyes').style.fill = wizard.colorEyes;
 
@@ -90,7 +92,6 @@
     if (evt.keyCode === ESC_KEYCODE) {
       closePopup();
     }
-  };
 
   var openPopup = function () {
     setup.classList.remove('hidden');
