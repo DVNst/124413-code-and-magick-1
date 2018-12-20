@@ -4,7 +4,7 @@
   var URL_SAVE = 'https://js.dump.academy/code-and-magick';
   var URL_LOAD = 'https://js.dump.academy/code-and-magick/data';
 
-  var saveload = function (onLoad, onError, method, URL, data) {
+  var createXHR = function (onLoad, onError) {
     var xhr = new XMLHttpRequest();
     xhr.responseType = 'json';
 
@@ -24,16 +24,19 @@
     });
     xhr.timeout = 10000;
 
-    xhr.open(method, URL);
-    xhr.send(data);
+    return xhr;
   };
 
   window.backend = {
     save: function (data, onLoad, onError) {
-      saveload(onLoad, onError, 'POST', URL_SAVE, data);
+      var xhr = createXHR(onLoad, onError);
+      xhr.open('POST', URL_SAVE);
+      xhr.send(data);
     },
     load: function (onLoad, onError) {
-      saveload(onLoad, onError, 'GET', URL_LOAD);
+      var xhr = createXHR(onLoad, onError);
+      xhr.open('GET', URL_LOAD);
+      xhr.send();
     }
   };
 })();
